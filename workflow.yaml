@@ -1,0 +1,75 @@
+openapi: 3.0.3
+info:
+  title: Workflow API
+  version: 1.0.0
+paths:
+  /api/v1/{organizationId}/workflows:
+    post:
+      summary: Create a new workflow
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workflow'
+      responses:
+        '200':
+          description: Workflow created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+components:
+  schemas:
+    Workflow:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the workflow
+        name:
+          type: string
+          description: Name of the workflow
+        organizationId:
+          type: string
+          description: Organisation identifier
+        activities:
+          type: array
+          items:
+            type: object
+            description: BPMN activity (startEvent, userTask, exclusiveGateway, endEvent)
+        transitions:
+          type: array
+          items:
+            type: object
+            description: Workflow transitions
+        variables:
+          type: array
+          items:
+            type: object
+            description: Workflow variables
+        diagram:
+          type: object
+          description: Visual layout information
+        coreInformation:
+          type: object
+          description: Core information fields
+        lastUpdated:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+        published:
+          type: boolean
+      required:
+        - name
+        - activities
+        - transitions
+        - variables
+        - diagram
