@@ -1,0 +1,4633 @@
+{
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "description": "To use this API, you must have an access token. For more information, see [Token Management](https://help.sap.com/docs/signavio-process-governance/developer-guide/token-management)",
+                "scheme": "bearer",
+                "type": "http"
+            }
+        },
+        "parameters": {
+            "Case-variablesFields": {
+                "description": "case-variables fields to include (csv)",
+                "in": "query",
+                "name": "fields",
+                "schema": {
+                    "default": "id,variableId,defaultValues,values,case,name,description",
+                    "type": "string"
+                }
+            },
+            "Case-variablesInclude": {
+                "description": "case-variables relationships to include (csv)",
+                "in": "query",
+                "name": "include",
+                "schema": {
+                    "default": "Cases",
+                    "type": "string"
+                }
+            },
+            "Case-variablesPrimaryKey": {
+                "description": "case-variables primary key to include (csv)",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/Case-variablesIdResourceAttribute"
+                }
+            },
+            "CasesFields": {
+                "description": "cases fields to include (csv)",
+                "in": "query",
+                "name": "fields",
+                "schema": {
+                    "default": "id,name,closed,created,processId,creator,tasks,variables,priority,milestone,caseNumber,applicationLink",
+                    "type": "string"
+                }
+            },
+            "CasesInclude": {
+                "description": "cases relationships to include (csv)",
+                "in": "query",
+                "name": "include",
+                "schema": {
+                    "default": "Users,Tasks,Case-variables",
+                    "type": "string"
+                }
+            },
+            "CasesPrimaryKey": {
+                "description": "case primary key to include (csv)",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/CasesIdResourceAttribute"
+                }
+            },
+            "FilesFields": {
+                "description": "files fields to include (csv)",
+                "in": "query",
+                "name": "fields",
+                "schema": {
+                    "default": "id,name,size",
+                    "type": "string"
+                }
+            },
+            "FilesInclude": {
+                "description": "files relationships to include (csv)",
+                "in": "query",
+                "name": "include",
+                "schema": {
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "FilesPrimaryKey": {
+                "description": "files primary key to include (csv)",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/FilesIdResourceAttribute"
+                }
+            },
+            "GroupsFields": {
+                "description": "groups fields to include (csv)",
+                "in": "query",
+                "name": "fields",
+                "schema": {
+                    "default": "id,name,users",
+                    "type": "string"
+                }
+            },
+            "GroupsInclude": {
+                "description": "groups relationships to include (csv)",
+                "in": "query",
+                "name": "include",
+                "schema": {
+                    "default": "Users",
+                    "type": "string"
+                }
+            },
+            "GroupsPrimaryKey": {
+                "description": "groups primary key to include (csv)",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/GroupsIdResourceAttribute"
+                }
+            },
+            "NestedFilter": {
+                "description": "Customizable query (experimental)",
+                "in": "query",
+                "name": "filter",
+                "schema": {
+                    "additionalProperties": true,
+                    "properties": {
+                        "AND": {
+                            "additionalProperties": true,
+                            "nullable": true,
+                            "type": "object"
+                        },
+                        "NOT": {
+                            "additionalProperties": true,
+                            "nullable": true,
+                            "type": "object"
+                        },
+                        "OR": {
+                            "additionalProperties": true,
+                            "nullable": true,
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "PageLimit": {
+                "description": "Max number of items",
+                "in": "query",
+                "name": "page[limit]",
+                "schema": {
+                    "default": 100,
+                    "format": "int64",
+                    "maximum": 1000,
+                    "type": "integer"
+                }
+            },
+            "PageOffset": {
+                "description": "Page offset",
+                "in": "query",
+                "name": "page[offset]",
+                "schema": {
+                    "default": 0,
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            "TasksFields": {
+                "description": "tasks fields to include (csv)",
+                "in": "query",
+                "name": "fields",
+                "schema": {
+                    "default": "id,case,name,assignee,created,updated,due,completed,applicationLink",
+                    "type": "string"
+                }
+            },
+            "TasksInclude": {
+                "description": "tasks relationships to include (csv)",
+                "in": "query",
+                "name": "include",
+                "schema": {
+                    "default": "Cases",
+                    "type": "string"
+                }
+            },
+            "TasksPrimaryKey": {
+                "description": "tasks primary key to include (csv)",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/TasksIdResourceAttribute"
+                }
+            },
+            "UsersFields": {
+                "description": "users fields to include (csv)",
+                "in": "query",
+                "name": "fields",
+                "schema": {
+                    "default": "id,name,email",
+                    "type": "string"
+                }
+            },
+            "UsersInclude": {
+                "description": "users relationships to include (csv)",
+                "in": "query",
+                "name": "include",
+                "schema": {
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "UsersPrimaryKey": {
+                "description": "users primary key to include (csv)",
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/UsersIdResourceAttribute"
+                }
+            }
+        },
+        "responses": {
+            "400": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "BAD_REQUEST"
+            },
+            "401": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "UNAUTHORIZED"
+            },
+            "403": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "FORBIDDEN"
+            },
+            "404": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "NOT_FOUND"
+            },
+            "405": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "METHOD_NOT_ALLOWED"
+            },
+            "409": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "CONFLICT"
+            },
+            "412": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "PRECONDITION_FAILED"
+            },
+            "415": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "UNSUPPORTED_MEDIA_TYPE"
+            },
+            "422": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "UNPROCESSABLE_ENTITY"
+            },
+            "500": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "INTERNAL_SERVER_ERROR"
+            },
+            "501": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "NOT_IMPLEMENTED"
+            },
+            "502": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "BAD_GATEWAY"
+            },
+            "503": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "SERVICE_UNAVAILABLE"
+            },
+            "504": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "GATEWAY_TIMEOUT"
+            },
+            "505": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Failure"
+                        }
+                    }
+                },
+                "description": "HTTP_VERSION_NOT_SUPPORTED"
+            },
+            "Case-variablesResourceReferencesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Case-variablesResourceReferencesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "Case-variablesResourceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Case-variablesResourceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "Case-variablesResourcesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Case-variablesResourcesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "CasesResourceReferenceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/CasesResourceReferenceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "CasesResourceReferencesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/CasesResourceReferencesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "CasesResourceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/CasesResourceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "CasesResourcesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/CasesResourcesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "FilesResourceReferencesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/FilesResourceReferencesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "FilesResourceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/FilesResourceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "FilesResourcesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/FilesResourcesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "GroupsResourceReferencesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupsResourceReferencesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "GroupsResourceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupsResourceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "GroupsResourcesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/GroupsResourcesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "NoContent": {
+                "description": "No Content"
+            },
+            "TasksResourceReferencesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/TasksResourceReferencesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "TasksResourceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/TasksResourceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "TasksResourcesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/TasksResourcesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "UsersResourceReferenceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UsersResourceReferenceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "UsersResourceReferencesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UsersResourceReferencesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "UsersResourceResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UsersResourceResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            },
+            "UsersResourcesResponse": {
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UsersResourcesResponseSchema"
+                        }
+                    }
+                },
+                "description": "OK"
+            }
+        },
+        "schemas": {
+            "ApiError": {
+                "additionalProperties": false,
+                "properties": {
+                    "code": {
+                        "description": "an application-specific error code, expressed as a string value",
+                        "type": "string"
+                    },
+                    "detail": {
+                        "description": "a human-readable explanation specific to this occurrence of the problem. Like 'title', this field’s value can be localized.",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "a unique identifier for this particular occurrence of the problem",
+                        "type": "string"
+                    },
+                    "links": {
+                        "properties": {
+                            "about": {
+                                "description": "a link that leads to further details about this particular occurrence of the problem",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/Meta"
+                    },
+                    "source": {
+                        "properties": {
+                            "parameter": {
+                                "description": "a string indicating which URI query parameter caused the error",
+                                "type": "string"
+                            },
+                            "pointer": {
+                                "description": "a JSON Pointer [RFC6901] to the associated entity in the request document",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "status": {
+                        "description": "the HTTP status code applicable to this problem, expressed as a string value",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "a short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Case-variablesCaseResourceAttribute": {
+                "$ref": "#/components/schemas/CasesResourceReference"
+            },
+            "Case-variablesDefaultValuesResourceAttribute": {
+                "items": {
+                    "type": "object"
+                },
+                "nullable": true,
+                "type": "array",
+                "uniqueItems": false
+            },
+            "Case-variablesDescriptionResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "Case-variablesIdResourceAttribute": {
+                "description": "The JSON:API resource ID",
+                "nullable": false,
+                "properties": {
+                    "cazeId": {
+                        "properties": {
+                            "date": {
+                                "format": "date",
+                                "type": "string"
+                            },
+                            "timestamp": {
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Case-variablesNameResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "Case-variablesResourceAttributes": {
+                "properties": {
+                    "attributes": {
+                        "properties": {
+                            "case": {
+                                "$ref": "#/components/schemas/Case-variablesCaseResourceAttribute"
+                            },
+                            "defaultValues": {
+                                "$ref": "#/components/schemas/Case-variablesDefaultValuesResourceAttribute"
+                            },
+                            "description": {
+                                "$ref": "#/components/schemas/Case-variablesDescriptionResourceAttribute"
+                            },
+                            "name": {
+                                "$ref": "#/components/schemas/Case-variablesNameResourceAttribute"
+                            },
+                            "values": {
+                                "$ref": "#/components/schemas/Case-variablesValuesResourceAttribute"
+                            },
+                            "variableId": {
+                                "$ref": "#/components/schemas/Case-variablesVariableIdResourceAttribute"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Case-variablesResourceReference": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/Case-variablesIdResourceAttribute"
+                    },
+                    "type": {
+                        "description": "The JSON:API resource type (Case-variables)",
+                        "enum": [
+                            "Case-variables"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "Case-variablesResourceReferencesResponseSchema": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/Case-variablesResourceReference"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "Case-variablesResourceResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/Case-variablesResourceSchema"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "Case-variablesResourceSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Case-variablesResourceReference"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Case-variablesResourceAttributes"
+                    },
+                    {
+                        "properties": {
+                            "links": {
+                                "type": "object"
+                            },
+                            "relationships": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "required": [
+                    "attributes"
+                ]
+            },
+            "Case-variablesResourcesResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "items": {
+                                    "$ref": "#/components/schemas/Case-variablesResourceSchema"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "Case-variablesValuesResourceAttribute": {
+                "items": {
+                    "type": "object"
+                },
+                "nullable": true,
+                "type": "array",
+                "uniqueItems": false
+            },
+            "Case-variablesVariableIdResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "CasesApplicationLinkResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "CasesCaseNumberResourceAttribute": {
+                "format": "int32",
+                "nullable": true,
+                "type": "integer"
+            },
+            "CasesClosedResourceAttribute": {
+                "format": "int64",
+                "nullable": true,
+                "type": "integer"
+            },
+            "CasesCreatedResourceAttribute": {
+                "format": "int64",
+                "nullable": true,
+                "type": "integer"
+            },
+            "CasesCreatorResourceAttribute": {
+                "$ref": "#/components/schemas/UsersResourceReference"
+            },
+            "CasesIdResourceAttribute": {
+                "description": "The JSON:API resource ID",
+                "nullable": false,
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "CasesMilestoneResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "CasesNameResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "CasesPriorityResourceAttribute": {
+                "format": "int32",
+                "nullable": true,
+                "type": "integer"
+            },
+            "CasesProcessIdResourceAttribute": {
+                "nullable": true,
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "CasesResourceAttributes": {
+                "properties": {
+                    "attributes": {
+                        "properties": {
+                            "applicationLink": {
+                                "$ref": "#/components/schemas/CasesApplicationLinkResourceAttribute"
+                            },
+                            "caseNumber": {
+                                "$ref": "#/components/schemas/CasesCaseNumberResourceAttribute"
+                            },
+                            "closed": {
+                                "$ref": "#/components/schemas/CasesClosedResourceAttribute"
+                            },
+                            "created": {
+                                "$ref": "#/components/schemas/CasesCreatedResourceAttribute"
+                            },
+                            "creator": {
+                                "$ref": "#/components/schemas/CasesCreatorResourceAttribute"
+                            },
+                            "milestone": {
+                                "$ref": "#/components/schemas/CasesMilestoneResourceAttribute"
+                            },
+                            "name": {
+                                "$ref": "#/components/schemas/CasesNameResourceAttribute"
+                            },
+                            "priority": {
+                                "$ref": "#/components/schemas/CasesPriorityResourceAttribute"
+                            },
+                            "processId": {
+                                "$ref": "#/components/schemas/CasesProcessIdResourceAttribute"
+                            },
+                            "tasks": {
+                                "$ref": "#/components/schemas/CasesTasksResourceAttribute"
+                            },
+                            "variables": {
+                                "$ref": "#/components/schemas/CasesVariablesResourceAttribute"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "CasesResourceReference": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/CasesIdResourceAttribute"
+                    },
+                    "type": {
+                        "description": "The JSON:API resource type (Cases)",
+                        "enum": [
+                            "Cases"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "CasesResourceReferenceResponseSchema": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/CasesResourceReference"
+                    }
+                },
+                "type": "object"
+            },
+            "CasesResourceReferencesResponseSchema": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/CasesResourceReference"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "CasesResourceResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/CasesResourceSchema"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "CasesResourceSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CasesResourceReference"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CasesResourceAttributes"
+                    },
+                    {
+                        "properties": {
+                            "links": {
+                                "type": "object"
+                            },
+                            "relationships": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "required": [
+                    "attributes"
+                ]
+            },
+            "CasesResourcesResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "items": {
+                                    "$ref": "#/components/schemas/CasesResourceSchema"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "CasesTasksResourceAttribute": {
+                "items": {
+                    "$ref": "#/components/schemas/TasksResourceReference"
+                },
+                "nullable": true,
+                "type": "array",
+                "uniqueItems": false
+            },
+            "CasesVariablesResourceAttribute": {
+                "items": {
+                    "$ref": "#/components/schemas/Case-variablesResourceReference"
+                },
+                "nullable": true,
+                "type": "array",
+                "uniqueItems": false
+            },
+            "Failure": {
+                "additionalProperties": false,
+                "properties": {
+                    "errors": {
+                        "items": {
+                            "$ref": "#/components/schemas/ApiError"
+                        },
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    "jsonapi": {
+                        "$ref": "#/components/schemas/JsonApi"
+                    },
+                    "links": {
+                        "$ref": "#/components/schemas/Links"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/Meta"
+                    }
+                },
+                "required": [
+                    "errors"
+                ],
+                "type": "object"
+            },
+            "FilesIdResourceAttribute": {
+                "description": "The JSON:API resource ID",
+                "nullable": false,
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "FilesNameResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "FilesResourceAttributes": {
+                "properties": {
+                    "attributes": {
+                        "properties": {
+                            "name": {
+                                "$ref": "#/components/schemas/FilesNameResourceAttribute"
+                            },
+                            "size": {
+                                "$ref": "#/components/schemas/FilesSizeResourceAttribute"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "FilesResourceReference": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/FilesIdResourceAttribute"
+                    },
+                    "type": {
+                        "description": "The JSON:API resource type (Files)",
+                        "enum": [
+                            "Files"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "FilesResourceReferencesResponseSchema": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/FilesResourceReference"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "FilesResourceResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/FilesResourceSchema"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "FilesResourceSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/FilesResourceReference"
+                    },
+                    {
+                        "$ref": "#/components/schemas/FilesResourceAttributes"
+                    },
+                    {
+                        "properties": {
+                            "links": {
+                                "type": "object"
+                            },
+                            "relationships": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "required": [
+                    "attributes"
+                ]
+            },
+            "FilesResourcesResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "items": {
+                                    "$ref": "#/components/schemas/FilesResourceSchema"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "FilesSizeResourceAttribute": {
+                "format": "int32",
+                "nullable": false,
+                "type": "integer"
+            },
+            "GroupsIdResourceAttribute": {
+                "description": "The JSON:API resource ID",
+                "nullable": false,
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "GroupsNameResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "GroupsResourceAttributes": {
+                "properties": {
+                    "attributes": {
+                        "properties": {
+                            "name": {
+                                "$ref": "#/components/schemas/GroupsNameResourceAttribute"
+                            },
+                            "users": {
+                                "$ref": "#/components/schemas/GroupsUsersResourceAttribute"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "GroupsResourceReference": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/GroupsIdResourceAttribute"
+                    },
+                    "type": {
+                        "description": "The JSON:API resource type (Groups)",
+                        "enum": [
+                            "Groups"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "GroupsResourceReferencesResponseSchema": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/GroupsResourceReference"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "GroupsResourceResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/GroupsResourceSchema"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "GroupsResourceSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/GroupsResourceReference"
+                    },
+                    {
+                        "$ref": "#/components/schemas/GroupsResourceAttributes"
+                    },
+                    {
+                        "properties": {
+                            "links": {
+                                "type": "object"
+                            },
+                            "relationships": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "required": [
+                    "attributes"
+                ]
+            },
+            "GroupsResourcesResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "items": {
+                                    "$ref": "#/components/schemas/GroupsResourceSchema"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "GroupsUsersResourceAttribute": {
+                "items": {
+                    "$ref": "#/components/schemas/UsersResourceReference"
+                },
+                "nullable": true,
+                "type": "array",
+                "uniqueItems": false
+            },
+            "JsonApi": {
+                "additionalProperties": false,
+                "properties": {
+                    "version": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Link": {
+                "description": "A link **MUST** be represented as either: a string containing the link's URL or a link object.",
+                "oneOf": [
+                    {
+                        "description": "A string containing the link's URL.",
+                        "format": "uri",
+                        "type": "string"
+                    },
+                    {
+                        "properties": {
+                            "href": {
+                                "description": "A string containing the link's URL.",
+                                "format": "uri",
+                                "type": "string"
+                            },
+                            "meta": {
+                                "$ref": "#/components/schemas/Meta"
+                            }
+                        },
+                        "required": [
+                            "href"
+                        ],
+                        "type": "object"
+                    }
+                ]
+            },
+            "Links": {
+                "allOf": [
+                    {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/Link"
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Pagination"
+                    }
+                ],
+                "description": "Link members related to the primary data."
+            },
+            "Meta": {
+                "additionalProperties": true,
+                "description": "Non-standard meta-information that can not be represented as an attribute or relationship.",
+                "type": "object"
+            },
+            "Pagination": {
+                "properties": {
+                    "first": {
+                        "description": "The first page of data",
+                        "format": "uri",
+                        "nullable": true,
+                        "type": "string"
+                    },
+                    "last": {
+                        "description": "The last page of data",
+                        "format": "uri",
+                        "nullable": true,
+                        "type": "string"
+                    },
+                    "next": {
+                        "description": "The next page of data",
+                        "format": "uri",
+                        "nullable": true,
+                        "type": "string"
+                    },
+                    "prev": {
+                        "description": "The previous page of data",
+                        "format": "uri",
+                        "nullable": true,
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Success": {
+                "description": "A JSON:API document with a single resource",
+                "properties": {
+                    "included": {
+                        "description": "Included resources",
+                        "items": {
+                            "properties": {
+                                "attributes": {
+                                    "additionalProperties": true,
+                                    "type": "object"
+                                },
+                                "id": {
+                                    "description": "The JSON:API resource ID",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The JSON:API resource type",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    "jsonapi": {
+                        "$ref": "#/components/schemas/JsonApi"
+                    },
+                    "links": {
+                        "$ref": "#/components/schemas/Links"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/Meta"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "type": "object"
+            },
+            "TasksApplicationLinkResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "TasksAssigneeResourceAttribute": {
+                "nullable": true,
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TasksCaseResourceAttribute": {
+                "$ref": "#/components/schemas/CasesResourceReference"
+            },
+            "TasksCompletedResourceAttribute": {
+                "format": "int64",
+                "nullable": true,
+                "type": "integer"
+            },
+            "TasksCreatedResourceAttribute": {
+                "format": "int64",
+                "nullable": true,
+                "type": "integer"
+            },
+            "TasksDueResourceAttribute": {
+                "format": "int64",
+                "nullable": true,
+                "type": "integer"
+            },
+            "TasksIdResourceAttribute": {
+                "description": "The JSON:API resource ID",
+                "nullable": false,
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "TasksNameResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "TasksResourceAttributes": {
+                "properties": {
+                    "attributes": {
+                        "properties": {
+                            "applicationLink": {
+                                "$ref": "#/components/schemas/TasksApplicationLinkResourceAttribute"
+                            },
+                            "assignee": {
+                                "$ref": "#/components/schemas/TasksAssigneeResourceAttribute"
+                            },
+                            "case": {
+                                "$ref": "#/components/schemas/TasksCaseResourceAttribute"
+                            },
+                            "completed": {
+                                "$ref": "#/components/schemas/TasksCompletedResourceAttribute"
+                            },
+                            "created": {
+                                "$ref": "#/components/schemas/TasksCreatedResourceAttribute"
+                            },
+                            "due": {
+                                "$ref": "#/components/schemas/TasksDueResourceAttribute"
+                            },
+                            "name": {
+                                "$ref": "#/components/schemas/TasksNameResourceAttribute"
+                            },
+                            "updated": {
+                                "$ref": "#/components/schemas/TasksUpdatedResourceAttribute"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "TasksResourceReference": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/TasksIdResourceAttribute"
+                    },
+                    "type": {
+                        "description": "The JSON:API resource type (Tasks)",
+                        "enum": [
+                            "Tasks"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "TasksResourceReferencesResponseSchema": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/TasksResourceReference"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "TasksResourceResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/TasksResourceSchema"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "TasksResourceSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/TasksResourceReference"
+                    },
+                    {
+                        "$ref": "#/components/schemas/TasksResourceAttributes"
+                    },
+                    {
+                        "properties": {
+                            "links": {
+                                "type": "object"
+                            },
+                            "relationships": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "required": [
+                    "attributes"
+                ]
+            },
+            "TasksResourcesResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "items": {
+                                    "$ref": "#/components/schemas/TasksResourceSchema"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "TasksUpdatedResourceAttribute": {
+                "format": "int64",
+                "nullable": true,
+                "type": "integer"
+            },
+            "UsersEmailResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "UsersIdResourceAttribute": {
+                "description": "The JSON:API resource ID",
+                "nullable": false,
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "UsersNameResourceAttribute": {
+                "nullable": true,
+                "type": "string"
+            },
+            "UsersResourceAttributes": {
+                "properties": {
+                    "attributes": {
+                        "properties": {
+                            "email": {
+                                "$ref": "#/components/schemas/UsersEmailResourceAttribute"
+                            },
+                            "name": {
+                                "$ref": "#/components/schemas/UsersNameResourceAttribute"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "UsersResourceReference": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/UsersIdResourceAttribute"
+                    },
+                    "type": {
+                        "description": "The JSON:API resource type (Users)",
+                        "enum": [
+                            "Users"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "UsersResourceReferenceResponseSchema": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/UsersResourceReference"
+                    }
+                },
+                "type": "object"
+            },
+            "UsersResourceReferencesResponseSchema": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/UsersResourceReference"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "UsersResourceResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/UsersResourceSchema"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            },
+            "UsersResourceSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UsersResourceReference"
+                    },
+                    {
+                        "$ref": "#/components/schemas/UsersResourceAttributes"
+                    },
+                    {
+                        "properties": {
+                            "links": {
+                                "type": "object"
+                            },
+                            "relationships": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "required": [
+                    "attributes"
+                ]
+            },
+            "UsersResourcesResponseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Success"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "items": {
+                                    "$ref": "#/components/schemas/UsersResourceSchema"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "info": {
+        "description": "SPG Analytics for fetching Process Governance resources",
+        "title": "SPG Analytics",
+        "version": "0.1.0"
+    },
+    "openapi": "3.0.1",
+    "x-sap-shortText": "Endpoints for fetching Process Governance resources",
+    "tags": [
+        {
+            "name": "Cases"
+        },
+        {
+            "name": "Files"
+        },
+        {
+            "name": "Groups"
+        },
+        {
+            "name": "Tasks"
+        },
+        {
+            "name": "Users"
+        }
+    ],
+    "externalDocs": {
+        "description": "Further information on how to use the Analytics API.",
+        "url": "https://help.sap.com/docs/signavio-process-governance/developer-guide/public-api"
+    },
+    "paths": {
+        "/case-variables": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "List of case-variables resources",
+                "description": "Retrieve a List of case-variables resources",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by variableId (csv)",
+                        "in": "query",
+                        "name": "filter[variableId]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by defaultValues (csv)",
+                        "in": "query",
+                        "name": "filter[defaultValues]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by values (csv)",
+                        "in": "query",
+                        "name": "filter[values]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by case (csv)",
+                        "in": "query",
+                        "name": "filter[case]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by description (csv)",
+                        "in": "query",
+                        "name": "filter[description]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageLimit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageOffset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Case-variablesResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/Case-variablesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/case-variables/{id}": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Case-variables resource",
+                "description": "Retrieve a case-variables resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Case-variablesResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/Case-variablesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/case-variables/{id}/cases": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Cases related to a case-variables resource",
+                "description": "Retrieve cases related to a case-variables resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/CasesResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/CasesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/case-variables/{id}/relationships/cases": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Cases references related to a case-variables resource",
+                "description": "Retrieve cases references related to a case-variables resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/CasesResourceReferenceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/CasesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "List of cases resources",
+                "description": "Retrieve a List of cases resources",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by closed (csv)",
+                        "in": "query",
+                        "name": "filter[closed]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by created (csv)",
+                        "in": "query",
+                        "name": "filter[created]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by processId (csv)",
+                        "in": "query",
+                        "name": "filter[processId]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by creator (csv)",
+                        "in": "query",
+                        "name": "filter[creator]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by tasks (csv)",
+                        "in": "query",
+                        "name": "filter[tasks]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by variables (csv)",
+                        "in": "query",
+                        "name": "filter[variables]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by priority (csv)",
+                        "in": "query",
+                        "name": "filter[priority]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by milestone (csv)",
+                        "in": "query",
+                        "name": "filter[milestone]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by caseNumber (csv)",
+                        "in": "query",
+                        "name": "filter[caseNumber]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by applicationLink (csv)",
+                        "in": "query",
+                        "name": "filter[applicationLink]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageLimit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageOffset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/CasesResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/CasesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases/{id}": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Cases resource",
+                "description": "Retrieve a cases resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/CasesResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/CasesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases/{id}/case-variables": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Case-variables related to a cases resource",
+                "description": "Retrieve case-variables related to a cases resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by variableId (csv)",
+                        "in": "query",
+                        "name": "filter[variableId]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by defaultValues (csv)",
+                        "in": "query",
+                        "name": "filter[defaultValues]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by values (csv)",
+                        "in": "query",
+                        "name": "filter[values]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by case (csv)",
+                        "in": "query",
+                        "name": "filter[case]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by description (csv)",
+                        "in": "query",
+                        "name": "filter[description]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Case-variablesResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/Case-variablesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases/{id}/relationships/case-variables": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Case-variables references related to a cases resource",
+                "description": "Retrieve case-variables references related to a cases resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by variableId (csv)",
+                        "in": "query",
+                        "name": "filter[variableId]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by defaultValues (csv)",
+                        "in": "query",
+                        "name": "filter[defaultValues]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by values (csv)",
+                        "in": "query",
+                        "name": "filter[values]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by case (csv)",
+                        "in": "query",
+                        "name": "filter[case]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by description (csv)",
+                        "in": "query",
+                        "name": "filter[description]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Case-variablesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Case-variablesResourceReferencesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/Case-variablesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases/{id}/relationships/tasks": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Tasks references related to a cases resource",
+                "description": "Retrieve tasks references related to a cases resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by case (csv)",
+                        "in": "query",
+                        "name": "filter[case]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by assignee (csv)",
+                        "in": "query",
+                        "name": "filter[assignee]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by created (csv)",
+                        "in": "query",
+                        "name": "filter[created]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by updated (csv)",
+                        "in": "query",
+                        "name": "filter[updated]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by due (csv)",
+                        "in": "query",
+                        "name": "filter[due]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by completed (csv)",
+                        "in": "query",
+                        "name": "filter[completed]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by applicationLink (csv)",
+                        "in": "query",
+                        "name": "filter[applicationLink]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/TasksResourceReferencesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/TasksResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases/{id}/relationships/users": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Users references related to a cases resource",
+                "description": "Retrieve users references related to a cases resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/UsersResourceReferenceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/UsersResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases/{id}/tasks": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Tasks related to a cases resource",
+                "description": "Retrieve tasks related to a cases resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by case (csv)",
+                        "in": "query",
+                        "name": "filter[case]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by assignee (csv)",
+                        "in": "query",
+                        "name": "filter[assignee]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by created (csv)",
+                        "in": "query",
+                        "name": "filter[created]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by updated (csv)",
+                        "in": "query",
+                        "name": "filter[updated]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by due (csv)",
+                        "in": "query",
+                        "name": "filter[due]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by completed (csv)",
+                        "in": "query",
+                        "name": "filter[completed]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by applicationLink (csv)",
+                        "in": "query",
+                        "name": "filter[applicationLink]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/TasksResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/TasksResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/cases/{id}/users": {
+            "get": {
+                "tags": [
+                    "Cases"
+                ],
+                "summary": "Users related to a cases resource",
+                "description": "Retrieve users related to a cases resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/UsersResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/UsersResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/files": {
+            "get": {
+                "tags": [
+                    "Files"
+                ],
+                "summary": "List of files resources",
+                "description": "Retrieve a List of files resources",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by size (csv)",
+                        "in": "query",
+                        "name": "filter[size]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/FilesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/FilesInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageLimit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageOffset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FilesResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/FilesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/files/{id}": {
+            "get": {
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Files resource",
+                "description": "Retrieve a files resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/FilesPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/FilesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/FilesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FilesResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/FilesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/groups": {
+            "get": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "List of groups resources",
+                "description": "Retrieve a List of groups resources",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by users (csv)",
+                        "in": "query",
+                        "name": "filter[users]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/GroupsFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/GroupsInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageLimit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageOffset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/GroupsResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/GroupsResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/groups/{id}": {
+            "get": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "Groups resource",
+                "description": "Retrieve a groups resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/GroupsPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/GroupsFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/GroupsInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/GroupsResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/GroupsResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/groups/{id}/relationships/users": {
+            "get": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "Users references related to a groups resource",
+                "description": "Retrieve users references related to a groups resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/GroupsPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by email (csv)",
+                        "in": "query",
+                        "name": "filter[email]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/UsersResourceReferencesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/UsersResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/groups/{id}/users": {
+            "get": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "Users related to a groups resource",
+                "description": "Retrieve users related to a groups resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/GroupsPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by email (csv)",
+                        "in": "query",
+                        "name": "filter[email]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/UsersResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/UsersResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/tasks": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "List of tasks resources",
+                "description": "Retrieve a List of tasks resources",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by case (csv)",
+                        "in": "query",
+                        "name": "filter[case]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by assignee (csv)",
+                        "in": "query",
+                        "name": "filter[assignee]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by created (csv)",
+                        "in": "query",
+                        "name": "filter[created]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by updated (csv)",
+                        "in": "query",
+                        "name": "filter[updated]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by due (csv)",
+                        "in": "query",
+                        "name": "filter[due]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by completed (csv)",
+                        "in": "query",
+                        "name": "filter[completed]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by applicationLink (csv)",
+                        "in": "query",
+                        "name": "filter[applicationLink]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageLimit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageOffset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/TasksResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/TasksResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/tasks/{id}": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Tasks resource",
+                "description": "Retrieve a tasks resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/TasksResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/TasksResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/tasks/{id}/cases": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Cases related to a tasks resource",
+                "description": "Retrieve cases related to a tasks resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/CasesResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/CasesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/tasks/{id}/relationships/cases": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Cases references related to a tasks resource",
+                "description": "Retrieve cases references related to a tasks resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/TasksPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/CasesInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/CasesResourceReferenceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/CasesResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List of users resources",
+                "description": "Retrieve a List of users resources",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/NestedFilter"
+                    },
+                    {
+                        "description": "Filter by id (csv)",
+                        "in": "query",
+                        "name": "filter[id]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by name (csv)",
+                        "in": "query",
+                        "name": "filter[name]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter by email (csv)",
+                        "in": "query",
+                        "name": "filter[email]",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersInclude"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageLimit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/PageOffset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/UsersResourcesResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/UsersResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users resource",
+                "description": "Retrieve a users resource",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "Indicates the media type of the resource.",
+                        "required": true,
+                        "schema": {
+                            "default": "application/vnd.api+json",
+                            "enum": [
+                                "application/vnd.api+json",
+                                "application/json"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersPrimaryKey"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersFields"
+                    },
+                    {
+                        "$ref": "#/components/parameters/UsersInclude"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/UsersResourceResponse"
+                    },
+                    "202": {
+                        "$ref": "#/components/responses/UsersResourceReferencesResponse"
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/NoContent"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "405": {
+                        "$ref": "#/components/responses/405"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409"
+                    },
+                    "412": {
+                        "$ref": "#/components/responses/412"
+                    },
+                    "415": {
+                        "$ref": "#/components/responses/415"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "501": {
+                        "$ref": "#/components/responses/501"
+                    },
+                    "502": {
+                        "$ref": "#/components/responses/502"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    },
+                    "504": {
+                        "$ref": "#/components/responses/504"
+                    },
+                    "505": {
+                        "$ref": "#/components/responses/505"
+                    }
+                }
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "https://api.au.signavio.cloud.sap/spg/analytics/v1",
+            "description": "AU"
+        },
+        {
+            "url": "https://api.ca.signavio.cloud.sap/spg/analytics/v1",
+            "description": "CA"
+        },
+        {
+            "url": "https://api.eu.signavio.cloud.sap/spg/analytics/v1",
+            "description": "EU"
+        },
+        {
+            "url": "https://api.jp.signavio.cloud.sap/spg/analytics/v1",
+            "description": "JP"
+        },
+        {
+            "url": "https://api.us.signavio.cloud.sap/spg/analytics/v1",
+            "description": "US"
+        },
+        {
+            "url": "https://api.sgp.signavio.cloud.sap/spg/analytics/v1",
+            "description": "SGP"
+        },
+        {
+            "url": "https://api.kr.signavio.cloud.sap/spg/analytics/v1",
+            "description": "KR"
+        }
+    ]
+}
