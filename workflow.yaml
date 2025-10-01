@@ -25,41 +25,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflow'
+      security:
+        - bearerAuth: []
+      # You can also specify headers explicitly if needed:
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Bearer access token
+        - name: Accept
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/json
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/json
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Workflow:
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the workflow
         name:
           type: string
-          description: Name of the workflow
         organizationId:
           type: string
-          description: Organisation identifier
         activities:
           type: array
           items:
             type: object
-            description: BPMN activity (startEvent, userTask, exclusiveGateway, endEvent)
         transitions:
           type: array
           items:
             type: object
-            description: Workflow transitions
         variables:
           type: array
           items:
             type: object
-            description: Workflow variables
         diagram:
           type: object
-          description: Visual layout information
         coreInformation:
           type: object
-          description: Core information fields
         lastUpdated:
           type: string
           format: date-time
